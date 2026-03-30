@@ -122,3 +122,33 @@ body {
   filter: drop-shadow(0 0 50px #ff00ff) drop-shadow(0 0 30px cyan) brightness(1.2);
   box-shadow: 0 0 60px rgba(255, 0, 255, 0.8), 0 0 40px rgba(0, 255, 255, 0.8);
 }
+.container {
+  text-align: center;
+  margin-top: 100px;
+}
+
+#barrel {
+  width: 300px;
+  transition: 0.3s;
+}
+
+/* 🔥 tremblement */
+.shake {
+  animation: shake 0.2s infinite;
+}
+
+@keyframes shake {
+  0% { transform: translate(2px, 2px); }
+  50% { transform: translate(-2px, -2px); }
+  100% { transform: translate(2px, -2px); }
+}
+
+/* 💡 glow */
+.glow {
+  filter: drop-shadow(0 0 20px purple);
+}
+
+/* 💥 flash */
+.flash {
+  background: white;
+}
