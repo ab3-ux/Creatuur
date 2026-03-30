@@ -9,6 +9,11 @@ body {
 .card {
   width: 250px;
   transition: 0.3s;
+  cursor: pointer;
+}
+
+.card:hover {
+  background: rgba(0, 255, 255, 0.1);
 }
 
 .nft {
