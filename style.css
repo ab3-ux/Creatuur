@@ -1,0 +1,22 @@
+body {
+  background: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.card {
+  width: 250px;
+  transition: 0.3s;
+}
+
+.nft {
+  width: 100%;
+  transition: 0.3s;
+}
+
+.card:hover .nft {
+  transform: scale(1.1) rotate(2deg);
+  filter: drop-shadow(0 0 20px cyan);
+}
