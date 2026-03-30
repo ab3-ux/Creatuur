@@ -1,41 +1,124 @@
 body {
-  background: black;
+  background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
+  margin: 0;
+  font-family: Arial, sans-serif;
 }
 
 .card {
   width: 250px;
   cursor: pointer;
+  perspective: 1000px;
+  position: relative;
 }
 
-/* Animation continue */
-@keyframes nftFloat {
-  0% {
-    transform: scale(1) rotate(0deg) translateY(0px);
-    filter: drop-shadow(0 0 20px cyan);
+/* Glow Background Effect */
+.card::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(0, 255, 255, 0.3) 0%, transparent 70%);
+  animation: glowPulse 4s ease-in-out infinite;
+  border-radius: 50%;
+  z-index: -1;
+}
+
+/* Animation: Glow Pulse */
+@keyframes glowPulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.5;
   }
   50% {
-    transform: scale(1.05) rotate(2deg) translateY(-10px);
+    transform: scale(1.2);
+    opacity: 1;
+  }
+}
+
+/* Animation: Shimmer Effect */
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+/* Animation: Rainbow Glow */
+@keyframes rainbowGlow {
+  0% {
+    filter: drop-shadow(0 0 20px cyan) hue-rotate(0deg);
+  }
+  25% {
+    filter: drop-shadow(0 0 25px #00ff88) hue-rotate(90deg);
+  }
+  50% {
+    filter: drop-shadow(0 0 30px #ff00ff) hue-rotate(180deg);
+  }
+  75% {
+    filter: drop-shadow(0 0 25px #ffff00) hue-rotate(270deg);
+  }
+  100% {
+    filter: drop-shadow(0 0 20px cyan) hue-rotate(360deg);
+  }
+}
+
+/* Animation: Float Enhanced */
+@keyframes nftFloat {
+  0% {
+    transform: translateY(0px) rotateX(0deg) rotateY(0deg) scale(1);
+    filter: drop-shadow(0 0 20px cyan);
+  }
+  25% {
+    transform: translateY(-15px) rotateX(5deg) rotateY(5deg) scale(1.05);
+    filter: drop-shadow(0 0 30px cyan);
+  }
+  50% {
+    transform: translateY(-20px) rotateX(0deg) rotateY(10deg) scale(1.08);
+    filter: drop-shadow(0 0 35px #00ff88);
+  }
+  75% {
+    transform: translateY(-15px) rotateX(-5deg) rotateY(5deg) scale(1.05);
     filter: drop-shadow(0 0 30px cyan);
   }
   100% {
-    transform: scale(1) rotate(0deg) translateY(0px);
+    transform: translateY(0px) rotateX(0deg) rotateY(0deg) scale(1);
     filter: drop-shadow(0 0 20px cyan);
   }
 }
 
-.nft {
-  width: 100%;
-  animation: nftFloat 3s ease-in-out infinite;
+/* Animation: Spin Slow */
+@keyframes spinSlow {
+  0% {
+    transform: rotateZ(0deg);
+  }
+  100% {
+    transform: rotateZ(360deg);
+  }
 }
 
-/* Effet au survol - plus puissant */
+/* Image Base Styling */
+.nft {
+  width: 100%;
+  border-radius: 15px;
+  animation: nftFloat 5s ease-in-out infinite, rainbowGlow 6s ease-in-out infinite;
+  box-shadow: 0 0 30px rgba(0, 255, 255, 0.5);
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 1;
+}
+
+/* Hover Effect - Powerful */
 .card:hover .nft {
-  animation: none;
-  transform: scale(1.15) rotate(5deg);
-  filter: drop-shadow(0 0 40px cyan);
-  transition: 0.3s;
+  animation: spinSlow 2s linear infinite, rainbowGlow 3s ease-in-out infinite;
+  transform: scale(1.25) rotateX(10deg) rotateY(15deg);
+  filter: drop-shadow(0 0 50px #ff00ff) drop-shadow(0 0 30px cyan) brightness(1.2);
+  box-shadow: 0 0 60px rgba(255, 0, 255, 0.8), 0 0 40px rgba(0, 255, 255, 0.8);
 }
