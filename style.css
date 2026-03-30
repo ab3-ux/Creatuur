@@ -8,22 +8,34 @@ body {
 
 .card {
   width: 250px;
-  transition: 0.3s;
   cursor: pointer;
 }
 
-.card:hover {
-  background: rgba(0, 255, 255, 0.1);
+/* Animation continue */
+@keyframes nftFloat {
+  0% {
+    transform: scale(1) rotate(0deg) translateY(0px);
+    filter: drop-shadow(0 0 20px cyan);
+  }
+  50% {
+    transform: scale(1.05) rotate(2deg) translateY(-10px);
+    filter: drop-shadow(0 0 30px cyan);
+  }
+  100% {
+    transform: scale(1) rotate(0deg) translateY(0px);
+    filter: drop-shadow(0 0 20px cyan);
+  }
 }
 
 .nft {
   width: 100%;
-  transition: 0.3s;
-  transform: scale(1.1) rotate(2deg);
-  filter: drop-shadow(0 0 20px cyan);
+  animation: nftFloat 3s ease-in-out infinite;
 }
 
+/* Effet au survol - plus puissant */
 .card:hover .nft {
-  transform: scale(1.15) rotate(3deg);
-  filter: drop-shadow(0 0 30px cyan);
+  animation: none;
+  transform: scale(1.15) rotate(5deg);
+  filter: drop-shadow(0 0 40px cyan);
+  transition: 0.3s;
 }
