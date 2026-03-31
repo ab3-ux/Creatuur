@@ -7,6 +7,6 @@ function openBarrel() {
   
   // 💥 simulation explosion
   setTimeout(() => {
-    barrel.src = "images/creatur001.png";
+    barrel.src = "images/Creatur001.png";
   }, 1000);
 }
