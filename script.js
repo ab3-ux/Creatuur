@@ -1,14 +1,15 @@
 function openBarrel() {
   const barrel = document.getElementById("barrel");
 
-  // effet ouverture
-  barrel.style.transform = "scale(1.2)";
-  barrel.style.filter = "brightness(2)";
+  // effet visuel
+  barrel.style.border = "5px solid red";
+  barrel.style.transform = "scale(1.1)";
+  barrel.style.filter = "brightness(1.5)";
 
-  // éclosion
+  // retour normal
   setTimeout(() => {
-    barrel.src = "creature.png";
+    barrel.style.border = "none";
     barrel.style.transform = "scale(1)";
     barrel.style.filter = "none";
-  }, 500);
+  }, 300);
 }
