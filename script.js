@@ -7,7 +7,7 @@ function openBarrel() {
 
   // transformation
   setTimeout(() => {
-    barrel.src = "images/creatur001.png";
+    barrel.src = "Images/creatur001.png";
     barrel.style.transform = "scale(1)";
     barrel.style.filter = "none";
   }, 500);
