@@ -18,3 +18,12 @@ body::after {
   from { transform: translate(0,0); }
   to { transform: translate(-500px, -500px); }
 }
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+#barrel {
+  filter: drop-shadow(0 0 20px cyan) drop-shadow(0 0 40px purple);
+}
