@@ -1,43 +1,20 @@
 body {
-  background: black;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
+  background: radial-gradient(circle at center, #0f0026, #000);
+  overflow: hidden;
 }
 
-/* carte */
-.card {
-  position: relative;
+/* étoiles */
+body::after {
+  content: "";
+  position: fixed;
+  width: 200%;
+  height: 200%;
+  background: url("https://www.transparenttextures.com/patterns/stardust.png");
+  opacity: 0.3;
+  animation: moveStars 60s linear infinite;
 }
 
-/* image principale */
-#barrel {
-  width: 300px;
-  border-radius: 20px;
-  animation: glitch 0.3s infinite;
-}
-
-/* effet glitch */
-@keyframes glitch {
-  0% {
-    transform: translate(0);
-    filter: drop-shadow(2px 0 red) drop-shadow(-2px 0 cyan);
-  }
-  20% {
-    transform: translate(-2px, 2px);
-  }
-  40% {
-    transform: translate(2px, -2px);
-  }
-  60% {
-    transform: translate(-2px, -2px);
-  }
-  80% {
-    transform: translate(2px, 2px);
-  }
-  100% {
-    transform: translate(0);
-    filter: drop-shadow(-2px 0 red) drop-shadow(2px 0 cyan);
-  }
+@keyframes moveStars {
+  from { transform: translate(0,0); }
+  to { transform: translate(-500px, -500px); }
 }
