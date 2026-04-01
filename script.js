@@ -1,14 +1,9 @@
 function openBarrel() {
   const barrel = document.getElementById("barrel");
 
-  // effet visuel
-  barrel.style.transform = "scale(1.1)";
-  barrel.style.filter = "brightness(2)";
+  // TEST VISUEL
+  barrel.style.border = "5px solid red";
 
-  // transformation
-  setTimeout(() => {
-    barrel.src = "Images/creatur001.png";
-    barrel.style.transform = "scale(1)";
-    barrel.style.filter = "none";
-  }, 500);
+  // IMAGE (minuscule !)
+  barrel.src = "images/creatur001.png";
 }
