@@ -1,8 +1,17 @@
 body {
   margin: 0;
-  background: radial-gradient(circle at center, #1a0033, #000);
-  font-family: Arial;
   overflow: hidden;
+  background: radial-gradient(circle at center, #1a0033, #000);
+}
+
+/* CANVAS POUR LES ETOILES */
+#stars {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
 }
 
 /* BANNIERE */
