@@ -1,29 +1,41 @@
 body {
-  background: radial-gradient(circle at center, #0f0026, #000);
-  overflow: hidden;
-}
+  margin: 0;
+  height: 100vh;
 
-/* étoiles */
-body::after {
-  content: "";
-  position: fixed;
-  width: 200%;
-  height: 200%;
-  background: url("https://www.transparenttextures.com/patterns/stardust.png");
-  opacity: 0.3;
-  animation: moveStars 60s linear infinite;
-}
+  background: url("images/logo.png") no-repeat center center fixed;
+  background-size: cover;
 
-@keyframes moveStars {
-  from { transform: translate(0,0); }
-  to { transform: translate(-500px, -500px); }
-}
-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
 }
+
+/* assombrit pour voir la créature */
+body::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+}
+
+/* container au dessus */
+.container {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+}
+
 barrel {
+  width: 300px;
+  border-radius: 20px;
   filter: drop-shadow(0 0 20px cyan) drop-shadow(0 0 40px purple);
+}
+body {
+  animation: zoomBg 20s infinite alternate;
+}
+
+keyframes zoomBg {
+  from { background-size: 100%; }
+  to { background-size: 110%; }
 }
