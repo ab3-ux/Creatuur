@@ -54,3 +54,8 @@ window.addEventListener("resize", () => {
 
 /* OPEN */
 function openBarrel()
+body {
+  margin: 0;
+  overflow: hidden;
+  background: radial-gradient(circle at center, #0a001a, #000);
+}
