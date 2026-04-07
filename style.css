@@ -54,8 +54,482 @@ window.addEventListener("resize", () => {
 
 /* OPEN */
 function openBarrel()
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    font-family: 'Arial', sans-serif;
+    background: #000;
+}
+
+/* ==== BACKGROUND COSMIQUE ==== */
 body {
-  margin: 0;
-  overflow: hidden;
-  background: radial-gradient(circle at center, #0a001a, #000);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(ellipse at 50% 30%, #1a0033 0%, #0a001a 30%, #000 70%, #000 100%);
+    overflow: hidden;
+}
+
+/* ==== CANVAS PRINCIPAL ==== */
+#cosmicCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    filter: brightness(1.1) contrast(1.2);
+}
+
+/* ==== ATMOSPHERE COSMIQUE ==== */
+.cosmic-atmosphere {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(
+        circle at 30% 50%,
+        rgba(168, 85, 247, 0.15) 0%,
+        rgba(0, 240, 255, 0.1) 30%,
+        transparent 60%
+    );
+    pointer-events: none;
+    z-index: 2;
+    mix-blend-mode: overlay;
+}
+
+/* ==== GALAXIES EN PARALLAX ==== */
+.galaxies-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.galaxy {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(60px);
+    mix-blend-mode: screen;
+    opacity: 0.6;
+}
+
+.galaxy-1 {
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(168, 85, 247, 0.8), transparent);
+    top: -200px;
+    left: -200px;
+    animation: floatGalaxy1 15s ease-in-out infinite;
+}
+
+.galaxy-2 {
+    width: 800px;
+    height: 800px;
+    background: radial-gradient(circle, rgba(0, 240, 255, 0.6), transparent);
+    top: 50%;
+    right: -300px;
+    animation: floatGalaxy2 20s ease-in-out infinite;
+}
+
+.galaxy-3 {
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(139, 92, 246, 0.7), transparent);
+    bottom: -150px;
+    left: 30%;
+    animation: floatGalaxy3 18s ease-in-out infinite;
+}
+
+/* ==== ANIMATIONS GALAXIES ==== */
+@keyframes floatGalaxy1 {
+    0%, 100% { transform: translate(0, 0); }
+    50% { transform: translate(50px, 100px); }
+}
+
+@keyframes floatGalaxy2 {
+    0%, 100% { transform: translate(0, 0); }
+    50% { transform: translate(-100px, -50px); }
+}
+
+@keyframes floatGalaxy3 {
+    0%, 100% { transform: translate(0, 0); }
+    50% { transform: translate(80px, 60px); }
+}
+
+/* ==== INTERFACE WEB3 ==== */
+.web3-interface {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 40px 20px;
+    pointer-events: none;
+}
+
+/* ==== HEADER ==== */
+.header {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    padding-top: 20px;
+    pointer-events: auto;
+}
+
+.logo-container {
+    text-align: center;
+    animation: pulseHeader 3s ease-in-out infinite;
+}
+
+.logo-glow {
+    font-size: 48px;
+    font-weight: 900;
+    letter-spacing: 12px;
+    color: #00f0ff;
+    text-shadow: 
+        0 0 20px rgba(0, 240, 255, 0.8),
+        0 0 40px rgba(168, 85, 247, 0.6),
+        0 0 60px rgba(0, 240, 255, 0.4),
+        0 0 100px rgba(168, 85, 247, 0.3);
+    font-family: 'Courier New', monospace;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    font-size: 14px;
+    color: rgba(168, 85, 247, 0.8);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    text-shadow: 0 0 15px rgba(168, 85, 247, 0.5);
+}
+
+@keyframes pulseHeader {
+    0%, 100% { text-shadow: 
+        0 0 20px rgba(0, 240, 255, 0.8),
+        0 0 40px rgba(168, 85, 247, 0.6),
+        0 0 60px rgba(0, 240, 255, 0.4),
+        0 0 100px rgba(168, 85, 247, 0.3);
+    }
+    50% { text-shadow: 
+        0 0 30px rgba(0, 240, 255, 1),
+        0 0 60px rgba(168, 85, 247, 0.8),
+        0 0 90px rgba(0, 240, 255, 0.6),
+        0 0 150px rgba(168, 85, 247, 0.5);
+    }
+}
+
+/* ==== CONTENU PRINCIPAL ==== */
+.main-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 50px;
+    pointer-events: auto;
+    flex: 1;
+}
+
+/* ==== CREATURE ==== */
+.creature-container {
+    position: relative;
+    width: 400px;
+    height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: floatCreature 4s ease-in-out infinite;
+}
+
+.creature-aura {
+    position: absolute;
+    width: 350px;
+    height: 350px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(168, 85, 247, 0.3), transparent);
+    filter: blur(40px);
+    animation: pulseAura 2s ease-in-out infinite;
+    box-shadow: 
+        inset 0 0 80px rgba(0, 240, 255, 0.2),
+        0 0 100px rgba(168, 85, 247, 0.3);
+}
+
+.creature-wrapper {
+    position: relative;
+    z-index: 3;
+    width: 300px;
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    perspective: 1000px;
+    transition: transform 0.3s ease;
+}
+
+.creature-wrapper:hover {
+    transform: scale(1.05) rotateY(5deg);
+}
+
+#creature {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: drop-shadow(0 0 30px rgba(0, 240, 255, 0.6)) 
+            drop-shadow(0 0 60px rgba(168, 85, 247, 0.4));
+    transition: all 0.3s ease;
+}
+
+.creature-glow {
+    position: absolute;
+    width: 310px;
+    height: 310px;
+    border-radius: 50%;
+    border: 2px solid rgba(0, 240, 255, 0.5);
+    box-shadow: 0, 0 0 40px rgba(0, 240, 255, 0.3);
+    animation: rotateGlow 8s linear infinite;
+}
+
+@keyframes floatCreature {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+}
+
+@keyframes pulseAura {
+    0%, 100% { 
+        width: 350px;
+        height: 350px;
+    }
+    50% { 
+        width: 380px;
+        height: 380px;
+    }
+}
+
+@keyframes rotateGlow {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* ==== BOUTONS WEB3 ==== */
+.web3-controls {
+    display: flex;
+    gap: 30px;
+    z-index: 4;
+}
+
+.btn {
+    position: relative;
+    padding: 15px 35px;
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    overflow: hidden;
+    pointer-events: auto;
+}
+
+.btn-text {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn-glow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: inherit;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    filter: blur(10px);
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #00f0ff, #a855f7);
+    color: #000;
+    box-shadow: 0 0 20px rgba(0, 240, 255, 0.5), 0 0 40px rgba(168, 85, 247, 0.3);
+}
+
+.btn-primary .btn-glow {
+    background: linear-gradient(135deg, #00f0ff, #a855f7);
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px) scaleX(1.1);
+    box-shadow: 0 0 30px rgba(0, 240, 255, 0.8), 0 0 60px rgba(168, 85, 247, 0.5), inset 0 0 20px rgba(255, 255, 255, 0.3);
+}
+
+.btn-primary:active {
+    transform: translateY(0px) scaleX(1);
+}
+
+.btn-secondary {
+    background: transparent;
+    color: #00f0ff;
+    border: 2px solid #00f0ff;
+    box-shadow: 0 0 15px rgba(0, 240, 255, 0.3);
+}
+
+.btn-secondary .btn-glow {
+    background: rgba(0, 240, 255, 0.3);
+}
+
+.btn-secondary:hover {
+    transform: translateY(-3px);
+    background: rgba(0, 240, 255, 0.1);
+    box-shadow: 0 0 25px rgba(0, 240, 255, 0.6), inset 0 0 20px rgba(0, 240, 255, 0.2);
+    border-color: #00f0ff;
+}
+
+/* ==== STATS WEB3 ==== */
+.web3-stats {
+    display: flex;
+    gap: 40px;
+    padding: 20px 40px;
+    background: rgba(0, 0, 0, 0.6);
+    border-top: 1px solid rgba(0, 240, 255, 0.3);
+    border-bottom: 1px solid rgba(0, 240, 255, 0.3);
+    backdrop-filter: blur(10px);
+    width: 100%;
+    justify-content: center;
+    pointer-events: auto;
+}
+
+.stat {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 12px;
+    letter-spacing: 1px;
+}
+
+.stat-label {
+    color: rgba(168, 85, 247, 0.7);
+    text-transform: uppercase;
+}
+
+.stat-value {
+    color: #00f0ff;
+    text-shadow: 0 0 10px rgba(0, 240, 255, 0.5);
+    font-weight: bold;
+}
+
+/* ==== PARTICULES ==== */
+.particles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 5;
+}
+
+.particle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: radial-gradient(circle, #00f0ff, rgba(0, 240, 255, 0));
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(0, 240, 255, 0.8);
+    animation: particleFloat 8s infinite ease-in;
+}
+
+@keyframes particleFloat {
+    0% {
+        opacity: 0;
+        transform: translateY(0) translateX(0);
+    }
+    10% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-400px) translateX(var(--x, 0px));
+    }
+}
+
+/* ==== EFFECTS LAYER ==== */
+.effects-layer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 20;
+    background: repeating-linear-gradient(
+        0deg,
+        rgba(0, 240, 255, 0.03),
+        rgba(0, 240, 255, 0.03) 1px,
+        transparent 1px,
+        transparent 2px
+    );
+    animation: scanlines 8s linear infinite;
+}
+
+@keyframes scanlines {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(10px); }
+}
+
+/* ==== RESPONSIVE ==== */
+@media (max-width: 768px) {
+    .logo-glow {
+        font-size: 32px;
+        letter-spacing: 8px;
+    }
+    
+    .subtitle {
+        font-size: 12px;
+    }
+    
+    .creature-container {
+        width: 250px;
+        height: 250px;
+    }
+    
+    .creature-wrapper {
+        width: 200px;
+        height: 200px;
+    }
+    
+    .btn {
+        padding: 12px 25px;
+        font-size: 12px;
+    }
+    
+    .web3-stats {
+        gap: 20px;
+        padding: 15px 20px;
+    }
 }

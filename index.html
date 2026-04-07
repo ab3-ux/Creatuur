@@ -1,16 +1,78 @@
-<body> <canvas id="stars">
-  
-</canvas>
-  
-  <!-- BANNIERE -->
-  <div class="banner">
-    <img src="beegoverse.png" class="logo">
-  </div>
-
-  <!-- CREATURE -->
-  <div class="container">
-    <img id="barrel" src="images/creatur001.png">
-    <button onclick="openBarrel()">OPEN</button>
-  </div>
-
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BEEGOVERSE - Web3 Cosmique</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- CANVAS PRINCIPAL COSMIQUE -->
+    <canvas id="cosmicCanvas"></canvas>
+    
+    <!-- ATMOSPHERE COSMIC -->
+    <div class="cosmic-atmosphere"></div>
+    
+    <!-- GALAXIES EN PARALLAX -->
+    <div class="galaxies-container">
+        <div class="galaxy galaxy-1"></div>
+        <div class="galaxy galaxy-2"></div>
+        <div class="galaxy galaxy-3"></div>
+    </div>
+    
+    <!-- INTERFACE WEB3 -->
+    <div class="web3-interface">
+        <!-- BANNIERE LOGO -->
+        <div class="header">
+            <div class="logo-container">
+                <div class="logo-glow">BEEGOVERSE</div>
+                <div class="subtitle">Web3 Cosmic Universe</div>
+            </div>
+        </div>
+        
+        <!-- CONTENU CENTRAL -->
+        <div class="main-content">
+            <!-- CREATURE CENTRALE -->
+            <div class="creature-container">
+                <div class="creature-aura"></div>
+                <div class="creature-wrapper">
+                    <img id="creature" src="images/creatur001.png" alt="Creature">
+                    <div class="creature-glow"></div>
+                </div>
+            </div>
+            
+            <!-- BOUTONS WEB3 -->
+            <div class="web3-controls">
+                <button class="btn btn-primary" onclick="activateCreature()">
+                    <span class="btn-text">ACTIVATE</span>
+                    <span class="btn-glow"></span>
+                </button>
+                <button class="btn btn-secondary" onclick="openPortal()">
+                    <span class="btn-text">OPEN PORTAL</span>
+                    <span class="btn-glow"></span>
+                </button>
+            </div>
+        </div>
+        
+        <!-- STATS WEB3 -->
+        <div class="web3-stats">
+            <div class="stat">
+                <span class="stat-label">Chain:</span>
+                <span class="stat-value" id="chain-stat">Cosmic Network</span>
+            </div>
+            <div class="stat">
+                <span class="stat-label">Status:</span>
+                <span class="stat-value" id="status-stat">Connected</span>
+            </div>
+        </div>
+    </div>
+    
+    <!-- PARTICULES FLOTTANTES -->
+    <div class="particles" id="particles"></div>
+    
+    <!-- EFFECTS LAYER -->
+    <div class="effects-layer"></div>
+    
+    <script src="script.js"></script>
 </body>
+</html>
